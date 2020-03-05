@@ -12,7 +12,7 @@ my $loop =  $ENV{LOOP} || 1;
 my $sleep = $ENV{SLEEP} || 0.05;
 
 my $vf =  '-vf scale=10:10'; # resize to 10x10
-   $vf .= ',transpose=2,transpose=2'; # rotate 180
+   $vf .= ',transpose=0,transpose=2'; # rotate 180
    $vf .= ',eq=gamma=0.7';
 #   $vf .= ',eq=gamma=1.5:saturation=1.3';
 
