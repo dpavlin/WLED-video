@@ -16,7 +16,9 @@ my $vf =  '-vf scale=10:10'; # resize to 10x10
    $vf .= ',eq=gamma=0.7';
 #   $vf .= ',eq=gamma=1.5:saturation=1.3';
 
-open(my $pipe, '-|', "ffmpeg -i \"$video\" $vf -f image2pipe -pix_fmt rgb24 -vcodec rawvideo -");
+my $fps = int( 1 / $sleep );
+
+open(my $pipe, '-|', "ffmpeg -i \"$video\" $vf -f image2pipe -pix_fmt rgb24 -vcodec rawvideo -r $fps -");
 
 
 my @frames;
