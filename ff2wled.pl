@@ -11,7 +11,12 @@ my $video = shift @ARGV || die "Usage: $0 video.mov";
 my $loop =  $ENV{LOOP} || 1;
 my $sleep = $ENV{SLEEP} || 0.05;
 
-open(my $pipe, '-|', "ffmpeg -i $video -vf scale=10:10 -f image2pipe -pix_fmt rgb24 -vcodec rawvideo -");
+my $vf =  '-vf scale=10:10'; # resize to 10x10
+   $vf .= ',transpose=2,transpose=2'; # rotate 180
+   $vf .= ',eq=gamma=0.7';
+#   $vf .= ',eq=gamma=1.5:saturation=1.3';
+
+open(my $pipe, '-|', "ffmpeg -i \"$video\" $vf -f image2pipe -pix_fmt rgb24 -vcodec rawvideo -");
 
 
 my @frames;
